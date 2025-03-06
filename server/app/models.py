@@ -70,11 +70,11 @@ class Community(db.Model):
 
     # Foreign keys
     category_id = db.Column(db.Integer, db.ForeignKey('category.id'), nullable=False)
-    creator_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)  # New field
+    creator_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
 
     # Relationships
     posts = db.relationship('Post', backref='community', lazy=True)
-    creator = db.relationship('User', backref='created_communities')  # Relationship to User
+    creator = db.relationship('User', backref='created_communities')
 
 class Category(db.Model):
     id = db.Column(db.Integer, primary_key=True)
