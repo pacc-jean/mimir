@@ -14,6 +14,7 @@ class User(db.Model):
     email = db.Column(db.String(100), unique=True, nullable=False)
     password_hash = db.Column(db.String(255), nullable=False)
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
+    is_admin = db.Column(db.Boolean, default=False)  # Admin flag
 
     # Relationships
     posts = db.relationship('Post', backref='author', lazy=True)
