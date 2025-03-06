@@ -37,7 +37,6 @@ class Post(db.Model):
     # Relationships
     comments = db.relationship('Comment', backref='post', lazy=True)
     votes = db.relationship('Vote', backref='post', lazy=True)
-    author = db.relationship('User', backref='user_posts')
 
 class Comment(db.Model):
     id = db.Column(db.Integer, primary_key=True)
