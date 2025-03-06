@@ -39,8 +39,8 @@ def update_community(community_id):
     if community.is_deleted:
         return jsonify({'error': 'Community not found'}), 404
     
-    if community.creator_id != user_id:
-        return jsonify({'error': 'Unauthorized'}), 403
+    if user_id != community.creator_id:
+        return jsonify({'error': 'Unauthorized to update this community'}), 403
 
     community.name = data.get('name', community.name)
     community.description = data.get('description', community.description)
@@ -58,8 +58,8 @@ def delete_community(community_id):
     if community.is_deleted:
         return jsonify({'error': 'Community not found'}), 404
 
-    if community.creator_id != user_id:
-        return jsonify({'error': 'Unauthorized'}), 403
+    if user_id != community.creator_id:
+        return jsonify({'error': 'Unauthorized to delete this community'}), 403
     
     community.is_deleted = True
     db.session.commit()
