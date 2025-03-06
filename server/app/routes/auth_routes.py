@@ -6,6 +6,7 @@ from app.models import User
 
 auth_bp = Blueprint('auth', __name__)
 
+# Create a new user
 @auth_bp.route('/register', methods=['POST'])
 def register():
     data = request.get_json()
@@ -27,6 +28,7 @@ def register():
 
     return jsonify({'message': 'User registered successfully'}), 201
 
+# Log in an existing user
 @auth_bp.route('/login', methods=['POST'])
 def login():
     data = request.get_json()
@@ -40,6 +42,7 @@ def login():
     access_token = create_access_token(identity=user.id)
     return jsonify({'access_token': access_token, 'message': 'Login successful'}), 200
 
+# Update user information
 @auth_bp.route('/update', methods=['PUT'])
 @jwt_required()
 def update_user():
@@ -58,6 +61,7 @@ def update_user():
     db.session.commit()
     return jsonify({'message': 'User updated successfully'}), 200
 
+# Delete a user
 @auth_bp.route('/delete', methods=['DELETE'])
 @jwt_required()
 def delete_user():
