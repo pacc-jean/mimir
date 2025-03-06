@@ -36,6 +36,7 @@ class Post(db.Model):
     # Relationships
     comments = db.relationship('Comment', backref='post', lazy=True)
     votes = db.relationship('Vote', backref='post', lazy=True)
+    author = db.relationship('User', backref='user_posts')
 
 class Comment(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -57,7 +58,7 @@ class Vote(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
     post_id = db.Column(db.Integer, db.ForeignKey('post.id'), nullable=False)
 
-    # Unique constraint to prevent duplicate votes
+    # Ensure a user can vote only once per post
     __table_args__ = (db.UniqueConstraint('user_id', 'post_id', name='unique_vote'),)
 
 class Community(db.Model):
