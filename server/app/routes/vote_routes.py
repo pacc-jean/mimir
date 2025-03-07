@@ -5,6 +5,7 @@ from app.models import Vote, Post, User
 
 vote_bp = Blueprint('vote_bp', __name__)
 
+# Register a vote
 @vote_bp.route('/posts/<int:post_id>/vote', methods=['POST'])
 @jwt_required()
 def vote_post(post_id):
@@ -35,6 +36,7 @@ def vote_post(post_id):
     db.session.commit()
     return jsonify({'message': 'Vote registered'})
 
+# Get vote counts for a post
 @vote_bp.route('/posts/<int:post_id>/votes', methods=['GET'])
 def get_vote_counts(post_id):
     post = Post.query.get(post_id)
