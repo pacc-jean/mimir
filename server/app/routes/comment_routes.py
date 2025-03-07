@@ -36,7 +36,7 @@ def create_comment(post_id):
 @jwt_required()
 def update_comment(comment_id):
     data = request.get_json()
-    user_id = get_jwt_identity()
+    user_id = int(get_jwt_identity())
     comment = Comment.query.get(comment_id)
 
     if not comment or comment.is_deleted:
@@ -58,7 +58,7 @@ def update_comment(comment_id):
 @comment_bp.route('/<int:comment_id>', methods=['DELETE'])
 @jwt_required()
 def delete_comment(comment_id):
-    user_id = get_jwt_identity()
+    user_id = int(get_jwt_identity())
     comment = Comment.query.get(comment_id)
 
     if not comment or comment.is_deleted:
