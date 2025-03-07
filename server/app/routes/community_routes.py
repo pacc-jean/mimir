@@ -33,9 +33,10 @@ def create_community():
 @jwt_required()
 def update_community(community_id):
     data = request.get_json()
-    user_id = get_jwt_identity()
+    user_id = int(get_jwt_identity())
 
     community = Community.query.get_or_404(community_id)
+    
     if community.is_deleted:
         return jsonify({'error': 'Community not found'}), 404
     
@@ -52,9 +53,10 @@ def update_community(community_id):
 @community_bp.route('/<int:community_id>', methods=['DELETE'])
 @jwt_required()
 def delete_community(community_id):
-    user_id = get_jwt_identity()
-    community = Community.query.get_or_404(community_id)
+    user_id = int(get_jwt_identity())
 
+    community = Community.query.get_or_404(community_id)
+    
     if community.is_deleted:
         return jsonify({'error': 'Community not found'}), 404
 
