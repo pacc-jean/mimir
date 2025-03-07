@@ -60,7 +60,7 @@ def get_posts():
 @jwt_required()
 def update_post(post_id):
     data = request.get_json()
-    user_id = get_jwt_identity()
+    user_id = int(get_jwt_identity())
     post = Post.query.get_or_404(post_id)
     
     if post.user_id != user_id:
@@ -75,7 +75,7 @@ def update_post(post_id):
 @post_bp.route('/<int:post_id>', methods=['DELETE'])
 @jwt_required()
 def delete_post(post_id):
-    user_id = get_jwt_identity()
+    user_id = int(get_jwt_identity())
     post = Post.query.get_or_404(post_id)
     
     if post.user_id != user_id:
