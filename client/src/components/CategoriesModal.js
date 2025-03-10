@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const CategoriesModal = ({ onClose }) => {
   const [categories, setCategories] = useState([]);
+  const navigate = useNavigate();
 
   // Fetch categories from API
   useEffect(() => {
@@ -11,6 +13,12 @@ const CategoriesModal = ({ onClose }) => {
       .catch((err) => console.error("Error fetching categories:", err));
   }, []);
 
+  // Handle category click
+  const handleCategoryClick = (categoryId) => {
+    navigate(`/categories/${categoryId}`);
+    onClose();
+  };
+
   return (
     <div style={styles.modalOverlay}>
       <div style={styles.modal}>
@@ -19,7 +27,11 @@ const CategoriesModal = ({ onClose }) => {
         <div style={styles.categoryList}>
           {categories.length > 0 ? (
             categories.map((category) => (
-              <span key={category.id} style={styles.categoryBox}>
+              <span 
+                key={category.id} 
+                style={styles.categoryBox} 
+                onClick={() => handleCategoryClick(category.id)}
+              >
                 {category.name}
               </span>
             ))
