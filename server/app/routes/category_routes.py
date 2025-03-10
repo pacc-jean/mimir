@@ -81,7 +81,7 @@ def get_category(category_id):
         'id': category.id,
         'name': category.name,
         'communities': [
-            {'id': comm.id, 'name': comm.name, 'description': comm.description}
+            {'id': comm.id, 'name': comm.name, 'description': comm.description, 'members_count': len(comm.members)}
             for comm in category.communities if not comm.is_deleted
         ]
     })

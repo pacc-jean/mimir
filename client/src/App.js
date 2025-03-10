@@ -3,6 +3,7 @@ import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Navbar from "./components/Navbar";
+import CategoryPage from "./components/CategoryPage";
 import ProtectedRoute from "./components/ProtectedRoute";
 import { useState } from "react";
 
@@ -22,6 +23,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/categories/:categoryId" element={<CategoryPage />} />
           {/* Protected Routes */}
           <Route element={<ProtectedRoute />}>
             {/* Example: <Route path="/dashboard" element={<Dashboard />} /> */}

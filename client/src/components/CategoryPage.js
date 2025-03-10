@@ -25,6 +25,7 @@ const CategoryPage = () => {
             <div key={community.id} style={styles.communityBox}>
               <h3>{community.name}</h3>
               <p>{community.description}</p>
+              <p><strong>Members:</strong> {community.members_count}</p>
             </div>
           ))
         ) : (
