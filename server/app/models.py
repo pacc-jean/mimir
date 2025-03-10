@@ -77,6 +77,11 @@ class Community(db.Model):
     posts = db.relationship('Post', backref='community', lazy=True)
     creator = db.relationship('User', backref='created_communities')
 
+    # Count number of members
+    @property
+    def members_count(self):
+        return len(self.members)
+
 class Category(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(100), unique=True, nullable=False)

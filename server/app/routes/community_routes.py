@@ -72,7 +72,7 @@ def delete_community(community_id):
 @community_bp.route('', methods=['GET'])
 def get_communities():
     communities = Community.query.filter_by(is_deleted=False).all()
-    return jsonify([{'id': c.id, 'name': c.name, 'description': c.description} for c in communities])
+    return jsonify([{'id': c.id, 'name': c.name, 'description': c.description, 'members_count': c.members_count} for c in communities])
 
 # Get a single community
 @community_bp.route('/<int:community_id>', methods=['GET'])
@@ -81,7 +81,7 @@ def get_community(community_id):
     if community.is_deleted:
         return jsonify({'error': 'Community not found'}), 404
 
-    return jsonify({'id': community.id, 'name': community.name, 'description': community.description})
+    return jsonify({'id': community.id, 'name': community.name, 'description': community.description, 'members_count': community.members_count})
 
 # Join a community
 @community_bp.route('/<int:community_id>/join', methods=['POST'])
