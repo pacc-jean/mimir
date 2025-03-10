@@ -23,7 +23,7 @@ const CategoriesModal = ({ onClose }) => {
     <div style={styles.modalOverlay}>
       <div style={styles.modal}>
         <button onClick={onClose} style={styles.closeButton}>✖</button>
-        <h3>Categories</h3>
+        <h3 style={{ color: "#333", fontWeight: "bold" }}>Categories</h3>
         <div style={styles.categoryList}>
           {categories.length > 0 ? (
             categories.map((category) => (
