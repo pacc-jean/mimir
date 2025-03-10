@@ -23,10 +23,9 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
-          <Route path="/categories/:categoryId" element={<CategoryPage />} />
           {/* Protected Routes */}
           <Route element={<ProtectedRoute />}>
-            {/* Example: <Route path="/dashboard" element={<Dashboard />} /> */}
+            {<Route path="/categories/:categoryId" element={<CategoryPage />} />}
           </Route>
         </Routes>
       </div>
