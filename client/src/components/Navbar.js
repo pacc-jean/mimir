@@ -1,9 +1,15 @@
 import { Link, useNavigate } from "react-router-dom";
-import { FaInstagram, FaTwitter, FaReddit, FaGithub, FaLinkedin, FaWhatsapp, FaEnvelope, FaYoutube } from "react-icons/fa";
+import { useState } from "react";
+import { FaInstagram, FaTwitter, FaReddit, FaGithub, FaLinkedin, FaWhatsapp, FaEnvelope, FaYoutube, FaThList } from "react-icons/fa";
+import CategoriesModal from "./CategoriesModal";
+
 
 const Navbar = ({ sidebarOpen, setSidebarOpen }) => {
   const navigate = useNavigate();
   const token = localStorage.getItem("token");
+
+  // State for categories modal
+  const [showCategories, setShowCategories] = useState(false);
 
   const handleLogout = () => {
     localStorage.removeItem("token");
@@ -23,6 +29,9 @@ const Navbar = ({ sidebarOpen, setSidebarOpen }) => {
       {/* Navigation Links */}
       <div style={styles.links}>
         <Link to="/" style={styles.link}>🏠 {sidebarOpen ? "Home" : ""}</Link>
+        <button onClick={() => setShowCategories(true)} style={{ ...styles.link, ...styles.button }}>
+          <FaThList /> {sidebarOpen ? "Categories" : ""}
+        </button>
         {!token ? (
           <>
             <Link to="/login" style={styles.link}>🔑 {sidebarOpen ? "Login" : ""}</Link>
@@ -66,6 +75,9 @@ const Navbar = ({ sidebarOpen, setSidebarOpen }) => {
           </a>
         </div>
       </div>
+
+      {/* Categories Modal */}
+      {showCategories && <CategoriesModal onClose={() => setShowCategories(false)} />}
     </nav>
   );
 };
