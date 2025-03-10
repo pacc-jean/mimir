@@ -1,4 +1,5 @@
 import { Link, useNavigate } from "react-router-dom";
+import { FaInstagram, FaTwitter, FaReddit, FaGithub, FaLinkedin, FaWhatsapp, FaEnvelope, FaYoutube } from "react-icons/fa";
 
 const Navbar = ({ sidebarOpen, setSidebarOpen }) => {
   const navigate = useNavigate();
@@ -14,7 +15,12 @@ const Navbar = ({ sidebarOpen, setSidebarOpen }) => {
       <button onClick={() => setSidebarOpen(!sidebarOpen)} style={styles.toggleButton}>
         {sidebarOpen ? "←" : "→"}
       </button>
+
+      {/* Mimir Title */}
       {sidebarOpen && <h2 style={styles.logo}>Mimir</h2>}
+      <hr style={styles.divider} />
+
+      {/* Navigation Links */}
       <div style={styles.links}>
         <Link to="/" style={styles.link}>🏠 {sidebarOpen ? "Home" : ""}</Link>
         {!token ? (
@@ -24,9 +30,41 @@ const Navbar = ({ sidebarOpen, setSidebarOpen }) => {
           </>
         ) : (
           <button onClick={handleLogout} style={{ ...styles.link, ...styles.button }}>
-            🚪 {sidebarOpen ? "Logout" : ""}
+            🚪 {sidebarOpen ? "Logout" : ""} 
           </button>
         )}
+      </div>
+      <hr style={styles.divider} />
+
+      {/* Contact Us Section */}
+      <div style={styles.contactSection}>
+        {sidebarOpen && <h3 style={styles.contactTitle}>Contact Us</h3>}
+        <div style={styles.socialIcons}>
+          <a href="https://www.instagram.com/ean.lc/" target="_blank" rel="noopener noreferrer" style={styles.icon}>
+            <FaInstagram />
+          </a>
+          <a href="https://x.com/plaidpeanuts" target="_blank" rel="noopener noreferrer" style={styles.icon}>
+            <FaTwitter />
+          </a>
+          <a href="https://www.reddit.com/user/Signal_Function6946/" target="_blank" rel="noopener noreferrer" style={styles.icon}>
+            <FaReddit />
+          </a>
+          <a href="https://github.com/pacc-jean" target="_blank" rel="noopener noreferrer" style={styles.icon}>
+            <FaGithub />
+          </a>
+          <a href="https://www.linkedin.com/in/jean-kajuga-080018315/" target="_blank" rel="noopener noreferrer" style={styles.icon}>
+            <FaLinkedin />
+          </a>
+          <a href="https://wa.me/+25469845876" target="_blank" rel="noopener noreferrer" style={styles.icon}>
+            <FaWhatsapp />
+          </a>
+          <a href="mailto:jeanluc.xii.iv@gmail.com" style={styles.icon}>
+            <FaEnvelope />
+          </a>
+          <a href="https://www.youtube.com/@plaidpeanuts" target="_blank" rel="noopener noreferrer" style={styles.icon}>
+            <FaYoutube />
+          </a>
+        </div>
       </div>
     </nav>
   );
@@ -43,8 +81,9 @@ const styles = {
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
-    padding: "20px",
+    padding: "10px",
     transition: "width 0.3s ease-in-out",
+    justifyContent: "space-between",
   },
   toggleButton: {
     background: "none",
@@ -52,32 +91,58 @@ const styles = {
     color: "#fff",
     fontSize: "20px",
     cursor: "pointer",
-    marginBottom: "20px",
+    marginBottom: "10px",
   },
   logo: {
-    marginBottom: "30px",
-    fontSize: "24px",
+    fontSize: "22px",
+    marginBottom: "10px",
+  },
+  divider: {
+    width: "100%",
+    height: "1px",
+    backgroundColor: "#555",
+    margin: "5px 0",
   },
   links: {
     display: "flex",
     flexDirection: "column",
-    gap: "15px",
+    gap: "10px",
     width: "100%",
     alignItems: "flex-start",
+    flexGrow: 1,
   },
   link: {
     color: "#fff",
     textDecoration: "none",
-    fontSize: "18px",
-    padding: "10px 15px",
+    fontSize: "16px",
+    padding: "8px 12px",
     display: "flex",
     alignItems: "center",
-    gap: "10px",
+    gap: "8px",
   },
   button: {
     background: "none",
     border: "none",
     cursor: "pointer",
+  },
+  contactSection: {
+    textAlign: "center",
+    paddingBottom: "10px",
+  },
+  contactTitle: {
+    fontSize: "14px",
+    marginBottom: "5px",
+  },
+  socialIcons: {
+    display: "flex",
+    gap: "8px",
+    flexWrap: "wrap",
+    justifyContent: "center",
+  },
+  icon: {
+    color: "#fff",
+    fontSize: "18px",
+    textDecoration: "none",
   },
 };
 
