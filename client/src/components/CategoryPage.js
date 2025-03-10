@@ -26,7 +26,7 @@ const CategoryPage = () => {
               <h3>{community.name}</h3>
               <p>{community.description}</p>
               <p style={{ color: "#333", fontWeight: "bold" }}>
-                <strong>Members:</strong> {community.members_count}
+                <strong>Members:</strong> {community.members_count ?? "N/A"}
               </p>
             </div>
           ))
